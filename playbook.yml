@@ -1,0 +1,8 @@
+- hosts: ansible_tutorial
+  # Allow Ansible to execute command as different user.
+  # The secure way is to disable ssh for root account
+  # You can also specify these values per task.
+  become: yes
+  become_user: root
+  roles:
+    - nginx

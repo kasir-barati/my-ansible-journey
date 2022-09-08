@@ -1,0 +1,21 @@
+# If the package is installed already Ansible won't install it again
+- name: install epel
+  yum:
+    # Package name
+    name: epel-release
+    # Install - in Ansible it is named present - or remove the package
+    state: present
+  # We can run tasks that contains only given tag.
+  tags: [nginx]
+
+- name: install nginx
+  yum:
+    name: nginx
+    state: present
+  tags: [nginx]
+
+- name: enable nginx
+  service:
+    name: nginx
+    state: started
+  tags: [nginx, status]
