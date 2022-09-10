@@ -10,13 +10,13 @@
 
 - name: install nginx
   yum:
-    name: nginx
+    name: "{{ nginx_service_name }}"
     state: present
   tags: [nginx]
 
 - name: enable nginx
   service:
-    name: nginx
+    name: "{{ nginx_service_name }}"
     state: started
   tags: [nginx, status]
 
