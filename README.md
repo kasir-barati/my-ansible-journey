@@ -1,4 +1,4 @@
-1. # Ansible
+# 1. Ansible
 
 - Provisioning and configuration management:
   - Of our infrastructure
@@ -18,7 +18,7 @@
   - Deploying our applications
   - Infrastructure As Code (IAC) is in a single Git repository
 
-2. # Up and run Vagrant
+# 2. Up and run Vagrant
 
 - [Install Vagrant](https://www.vagrantup.com/downloads)
 - Install VirtualBox if you face this error:
@@ -44,7 +44,7 @@
 
 - `vagrant up`
 
-3. # Inventory file
+# 3. Inventory file
 
 - Before we can actually start using Ansible
 - Specify connection to the servers for Ansible.
@@ -59,18 +59,18 @@
   ```
   - `[ansible_tutorial]` is a group name, It's good practice to specify a group, even if you have single server. It's more descriptive way than using IP or host name.
 
-4. # First experience with ansible
+# 4. First experience with ansible
 
 - `ansible all -m ping -i hosts`
   - `all` is the group from inventory file. Though to be more precise I should say all is a keyword which means to execute ansible against all defined servers in the `hosts` file
   - ping module to check the connection.
 
-5. # Create playbook
+# 5. Create playbook
 
 - `tasks` is like a single command in bash
 - `setup` is internal task for gathering information about the server. We will use them later on. For now, just know, that such additional task exists.
 
-6. # Roles in Ansible
+# 6. Roles in Ansible
 
 - Use roles instead of using tasks directly in playbooks
 - E.X. In order to install nginx. We can group them into single role. Roles will help you organize our structure.
@@ -82,7 +82,8 @@
       - E.X: `tasks`, `defaults`, `handlers`
 - `my-touch roles/nginx/tasks/main.yml`. [Read more about my-touch](https://github.com/kasir-barati/the-pragmatic-programmer/blob/main/customize-your-dev-env/my-touch.md)
 
-7. # Tasks in Ansible
+# 7. Tasks in Ansible
 
 - Each task should start with name.
 - Next line contains module name that we will use.
+- `ansible-playbook -i hosts playbook.yml`
