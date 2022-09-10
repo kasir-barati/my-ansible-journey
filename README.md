@@ -1,3 +1,7 @@
+# Original reference:
+
+## Read the official post [here](https://blacksaildivision.com/ansible-tutorial-part-1)
+
 # 1. Ansible
 
 - Provisioning and configuration management:
