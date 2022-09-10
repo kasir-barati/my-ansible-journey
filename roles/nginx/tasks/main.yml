@@ -19,3 +19,18 @@
     name: nginx
     state: started
   tags: [nginx, status]
+
+- name: copy nginx configuration file
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    # chown
+    owner: root
+    # chown
+    group: root
+    # chmod, or use the numeric way
+    # mode: 0644
+    mode: u=rw,g=r,o=r
+  # notifier name, no restrictions, it's just a string.
+  notify: restart nginx
+  tags: [nginx, config]
