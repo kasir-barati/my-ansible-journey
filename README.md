@@ -22,7 +22,7 @@
   - Deploying our applications
   - Infrastructure As Code (IAC) is in a single Git repository
 
-# 2. Up and run Vagrant
+# 2. Vagrant
 
 - [Install Vagrant](https://www.vagrantup.com/downloads)
 - Install VirtualBox if you face this error:
@@ -47,6 +47,8 @@
   - `sudo apt update && sudo apt install virtualbox`
 
 - `vagrant up`
+- `vagrant halt` to shutdown
+- `vagrant destroy`
 
 # 3. Inventory file
 
