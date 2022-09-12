@@ -1,0 +1,12 @@
+# TODO: Note that the handlers are not executed until all tasks have been successfully processed. In some cases this fact can make troubleshooting more difficult. I found an example in the book Ansible: Up and Running, by Rene Moser and Lorin Hochstein, which I would like to share here. Imagine the following procedure:
+
+# 1. You are running a playbook.
+# 2. One of the tasks uses notify on changes.
+# 3. In a following task, an error occurs that causes the processing to abort.
+# 4. You fix the problem and run the playbook again.
+# 5. The task from step two already made its changes successfully. When the playbook is executed again, its status will therefore be OK and not CHANGED. However, the handler was not executed, because the processing aborted before that point. The handler will not be triggered when the playbook is executed again, since the task required for this no longer leads to any changes in the target node.
+---
+- name: Reload NetworkManager
+  service:
+    name: NetworkManager
+    state: reloaded

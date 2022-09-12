@@ -1,0 +1,35 @@
+# FIXME: Undo this tasks after all other roles done
+
+- name: The 'dns=none' is set in /etc/NetworkManager/NetworkManager.conf
+  ini_file:
+    path: /etc/NetworkManager/NetworkManager.conf
+    state: present
+    no_extra_spaces: yes
+    section: main
+    option: dns
+    value: none
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  notify:
+    - Reload NetworkManager
+  register: original_network_manager_conf_file
+
+# FIXME: Undo this tasks after all other roles done
+
+- name: Copy resolv.conf file
+  template:
+    src: roles/resolv.conf/files/resolv.conf
+    dest: /etc/resolv.conf
+    force: true
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  notify:
+    - Reload NetworkManager
+
+# TODO: Please run this specific task after all other roles executed and if they have changed the server
+- name: Return original conf files since we have their backup
+  # ...

@@ -1,0 +1,63 @@
+- name: Install required system packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+    state: latest
+    update_cache: true
+  tags:
+    - docker
+    - prerequisite-packages
+
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  tags:
+    - docker
+    - add-gpg-key
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+  tags:
+    - docker
+    - add-docker-repository
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+  tags:
+    - docker
+    - install-docker
+
+- name: Install Docker Module for Python
+  pip:
+    name: docker
+  tags:
+    - docker
+    - install-docker-python
+
+- name: add user to docker group
+  user:
+    name: "{{ remote_username }}"
+    groups: "{{ docker_group }}"
+    append: yes
+
+- name: Install docker-compose
+  apt:
+    name: docker-compose
+    state: latest
+    # https://unix.stackexchange.com/a/487401
+    update_cache: true
+  tags:
+    - docker
+    - docker-compose
